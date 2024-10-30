@@ -1,8 +1,10 @@
 import { useState } from "react";
+
 import {
 	View,
 	Image,
 	Text,
+	TextInput,
 	TouchableOpacity,
 	StyleSheet,
 	KeyboardAvoidingView,
@@ -13,19 +15,14 @@ import {
 
 import Input from "../components/Input";
 import Button from "../components/Button";
-import AddBtnSvg from "../components/Svg/AddBtnSvg";
 
-const RegistrationScreen: React.FC = () => {
-	const [username, setUsername] = useState<string>("");
+const LoginScreen: React.FC = () => {
 	const [email, setEmail] = useState<string>("");
 	const [password, setPassword] = useState<string>("");
 	const [passwordVisible, setPasswordVisible] = useState<boolean>(false);
 
-	const onRegister = () => {
-		console.log(
-			`Username: ${username}, Email: ${email}, password: ${password}`
-		);
-		setUsername("");
+	const onLogin = () => {
+		console.log(` Email: ${email}, password: ${password}`);
 		setEmail("");
 		setPassword("");
 	};
@@ -55,25 +52,9 @@ const RegistrationScreen: React.FC = () => {
 					keyboardVerticalOffset={Platform.OS === "ios" ? 40 : 0}
 				>
 					<View style={styles.formContainer}>
-						<View style={styles.avatar}>
-							<TouchableOpacity
-								style={styles.avatarBtn}
-								onPress={() => console.log("Photo added")}
-							>
-								<AddBtnSvg />
-							</TouchableOpacity>
-						</View>
-
-						<Text style={styles.title}>Реєстрація</Text>
+						<Text style={styles.title}>Увійти</Text>
 
 						<View style={styles.inputsContainer}>
-							<Input
-								placeholder="Логін"
-								value={username}
-								onChangeText={setUsername}
-								textContentType="username"
-								importantForAutofill="no"
-							/>
 							<Input
 								placeholder="Адреса електронної пошти"
 								value={email}
@@ -92,12 +73,14 @@ const RegistrationScreen: React.FC = () => {
 							/>
 						</View>
 
-						<Button onPress={onRegister}>
-							<Text style={styles.buttonText}>Зареєструватися</Text>
+						<Button onPress={onLogin}>
+							<Text style={styles.buttonText}>Увійти</Text>
 						</Button>
 
 						<TouchableOpacity>
-							<Text style={styles.linkText}>Вже є акаунт? Увійти</Text>
+							<Text style={styles.linkText}>
+								Немає аккаунту? Зареєструватися
+							</Text>
 						</TouchableOpacity>
 					</View>
 				</KeyboardAvoidingView>
@@ -106,7 +89,7 @@ const RegistrationScreen: React.FC = () => {
 	);
 };
 
-export default RegistrationScreen;
+export default LoginScreen;
 
 const styles = StyleSheet.create({
 	container: {
@@ -125,7 +108,7 @@ const styles = StyleSheet.create({
 		position: "absolute",
 		bottom: 0,
 		width: "100%",
-		height: "68%",
+		height: "60%",
 		alignItems: "center",
 		backgroundColor: "#FFFFFF",
 		borderTopLeftRadius: 20,
@@ -134,30 +117,11 @@ const styles = StyleSheet.create({
 		paddingRight: 16,
 		overflow: "visible",
 	},
-	avatar: {
-		position: "absolute",
-		top: -60,
-		width: 120,
-		height: 120,
-		backgroundColor: "#F6F6F6",
-		borderRadius: 16,
-	},
-	avatarBtn: {
-		position: "absolute",
-		bottom: 14,
-		right: -12,
-	},
-	avatarBtnText: {
-		justifyContent: "center",
-		alignItems: "center",
-		alignContent: "center",
-		color: "#FF6C00",
-		fontSize: 24,
-	},
+
 	title: {
 		fontFamily: "Roboto-Medium",
 		fontSize: 30,
-		marginTop: 92,
+		marginTop: 32,
 	},
 	inputsContainer: {
 		display: "flex",
@@ -165,6 +129,16 @@ const styles = StyleSheet.create({
 		width: "100%",
 		marginTop: 32,
 		marginBottom: 43,
+	},
+	input: {
+		width: "100%",
+		height: 50,
+		borderRadius: 8,
+		borderWidth: 1,
+		borderColor: "#ccc",
+		padding: 16,
+		backgroundColor: "#E8E8E8",
+		fontSize: 16,
 	},
 	passwordContainer: {
 		position: "relative",
@@ -181,6 +155,14 @@ const styles = StyleSheet.create({
 		fontFamily: "Roboto-Regular",
 		color: "#1B4371",
 		fontSize: 16,
+	},
+	button: {
+		backgroundColor: "#FF6C00",
+		width: "100%",
+		alignItems: "center",
+		borderRadius: 100,
+		paddingBottom: 16,
+		paddingTop: 16,
 	},
 	buttonText: {
 		color: "#fff",

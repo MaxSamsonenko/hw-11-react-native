@@ -8,7 +8,7 @@
 		"userInterfaceStyle": "light",
 		"splash": {
 			"image": "./assets/images/bg-image.jpg",
-			"resizeMode": "contain",
+			"resizeMode": "cover",
 			"backgroundColor": "#ffffff"
 		},
 		"assetBundlePatterns": ["assets/fonts/*"],
